@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Draw Line</title>
+</head>
+<body>
+<canvas width ="600" height="300"></canvas>
+
+<script>
+    const cx = document.querySelector("canvas").getContext("2d")
+    function branch(length, angle, scale) {
+        cx.fillRect(0,0,1,length)
+        if(length < 8) return;
+        cx.save()
+        cx.translate(0, length)
+        cx.rotate(-angle)
+        branch(length*scale, angle, scale)
+        cx.rotate(2*angle)
+        branch(length*scale, angle, scale)
+        cx.restore()
+    }
+    cx.translate(200,0)
+    cx.fillStyle = "rgb(150, 200, 60)"
+
+    let red = 100;
+    let green =10;
+    let blue = 200;
+
+    red = Math.round(Math.random()*255)
+    green = Math.round(Math.random()*255)
+    blue =Math.round(Math.random()*255)
+    cx.fillStyle = `rgb(${red}, ${green}, ${blue}`;
+
+    branch(60, 0.5, 0.8);
+        </script>
+</body>
+</html>
